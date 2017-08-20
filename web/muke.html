@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="jquery-3.2.1.js"></script>
+    <script>
+        window.onload = onclickList;
+
+        function inputHintFocus() {
+            var hint = document.getElementById("input_search");
+            if (hint.value == "输入关键字查找") hint.value = "";
+        }
+
+
+        function inputHintOnblur() {
+            var hint = document.getElementById("input_search");
+            if (hint.value == "") hint.value = "输入关键字查找"
+        }
+
+        function shopcartMouseMove() {
+            var img_shopcart = document.getElementById("img_shopcart");
+            img_shopcart.src = "drawable/btn_shopcart_select.png";
+        }
+
+        function shopcartMouseOut() {
+            var img_shopcart = document.getElementById("img_shopcart");
+            img_shopcart.src = "drawable/btn_shopcart.png";
+        }
+
+        function msgMouseMove() {
+            var img_msg = document.getElementById("img_msg");
+            img_msg.src = "drawable/btn_msg_select.svg";
+        }
+
+        function msgMouseOut() {
+            var img_msg = document.getElementById("img_msg");
+            img_msg.src = "drawable/btn_msg.svg";
+        }
+
+        function headMouseMove() {
+            var img_head = document.getElementById("img_head");
+            img_head.style.border = "2px solid #D50000"
+            img_head.style.borderRadius = "50%"
+            img_head.style.height = "31px"
+        }
+
+        function headMouseOut() {
+            var img_head = document.getElementById("img_head");
+            img_head.style.border = "0px solid #D50000"
+            img_head.style.height = "35px"
+        }
+
+        function search() {
+            var msg = document.getElementById("input_search").value;
+            if (msg != "" && msg != "输入关键字查找")
+                window.location.href = "http://www.imooc.com/search/?words=" + msg;
+        }
+
+        function btn_searchMouseOut() {
+            var btn_search = document.getElementById("btn_search");
+            btn_search.src = "drawable/ic_search.svg";
+        }
+
+        function btn_searchMouseMove() {
+            var btn_search = document.getElementById("btn_search");
+            btn_search.src = "drawable/ic_search_select.svg";
+        }
+
+
+        function tabMouseMove() {
+            var oUl = document.getElementById("ul_tab");
+            var oLis = oUl.getElementsByTagName("li");
+            var oUl2 = document.getElementById("ul_tab_name");
+            var oLis2 = oUl2.getElementsByTagName("li");
+            /*隐藏的选项卡*/
+            var tab = document.getElementById("div_tab_hide");
+
+            var tab_position;
+
+            var tabBg = new Array();
+            tabBg[0] = "url(drawable/bg_tab1.png)";
+            tabBg[1] = "url(drawable/bg_tab2.png)";
+            tabBg[2] = "url(drawable/bg_tab3.png)";
+            tabBg[3] = "url(drawable/bg_tab4.png)";
+            tabBg[4] = "url(drawable/bg_tab5.png)";
+            tabBg[5] = "url(drawable/bg_tab6.png)";
+            tabBg[6] = "url(drawable/bg_tab7.png)";
+
+            for (var i = 0; i < oLis.length; i++) {
+                oLis[i].onmousemove = (function (i) {
+                    return function () {
+                        tab_position = i;
+                        oLis[i].style.background = "#6c7177";
+                        oLis[i].getElementsByTagName("div")[0].style.color = "#ffffff";
+                        oLis2[i].style.background = "#6c7177";
+                        oLis2[i].getElementsByTagName("div")[0].style.color = "#ffffff";
+                        tab.style.backgroundImage = tabBg[i];
+                        tab.style.backgroundRepeat = "round";
+                        tab.style.visibility = "visible";
+                    }
+                }(i))
+
+                oLis[i].onmouseout = (function (i) {
+                    return function () {
+                        oLis[i].style.background = "#263238";
+                        oLis[i].getElementsByTagName("div")[0].style.color = "#d0d0d0";
+                        oLis2[i].style.background = "#263238";
+                        oLis2[i].getElementsByTagName("div")[0].style.color = "#d0d0d0";
+                        tab.style.visibility = "hidden";
+                    }
+                }(i))
+            }
+            for (var i = 0; i < oLis2.length; i++) {
+                oLis2[i].onmousemove = (function (i) {
+                    return function () {
+                        tab_position = i;
+                        oLis[i].style.background = "#6c7177";
+                        oLis[i].getElementsByTagName("div")[0].style.color = "#ffffff";
+                        oLis2[i].style.background = "#6c7177";
+                        oLis2[i].getElementsByTagName("div")[0].style.color = "#ffffff";
+                        tab.style.backgroundImage = tabBg[i];
+                        tab.style.backgroundRepeat = "round";
+                        tab.style.visibility = "visible";
+                    }
+                }(i))
+                oLis2[i].onmouseout = (function (i) {
+                    return function () {
+                        oLis[i].style.background = "#263238";
+                        oLis[i].getElementsByTagName("div")[0].style.color = "#d0d0d0";
+                        oLis2[i].style.background = "#263238";
+                        oLis2[i].getElementsByTagName("div")[0].style.color = "#d0d0d0";
+                        tab.style.visibility = "hidden";
+                    }
+                }(i))
+            }
+
+            tab.onmousemove = function () {
+                oLis[tab_position].style.background = "#6c7177";
+                oLis[tab_position].getElementsByTagName("div")[0].style.color = "#ffffff";
+                oLis2[tab_position].style.background = "#6c7177";
+                oLis2[tab_position].getElementsByTagName("div")[0].style.color = "#ffffff";
+                tab.style.backgroundImage = tabBg[tab_position];
+                tab.style.backgroundRepeat = "round";
+                tab.style.visibility = "visible";
+            }
+
+            tab.onmouseout = function () {
+                oLis[tab_position].style.background = "#263238";
+                oLis[tab_position].getElementsByTagName("div")[0].style.color = "#d0d0d0";
+                oLis2[tab_position].style.background = "#263238";
+                oLis2[tab_position].getElementsByTagName("div")[0].style.color = "#d0d0d0";
+                tab.style.visibility = "hidden";
+            }
+
+
+        }
+
+        function img_sgt1Move() {
+            var img_sgt1 = document.getElementById("img_sgt1");
+            img_sgt1.src = "drawable/img_sgt1_select.png"
+        }
+
+        function img_sgt1Out() {
+            var img_sgt1 = document.getElementById("img_sgt1");
+            img_sgt1.src = "drawable/img_sgt1.png"
+        }
+
+        function img_sgt2Move() {
+            var img_sgt2 = document.getElementById("img_sgt2");
+            img_sgt2.src = "drawable/img_sgt2_select.png"
+        }
+
+        function img_sgt2Out() {
+            var img_sgt2 = document.getElementById("img_sgt2");
+            img_sgt2.src = "drawable/img_sgt2.png"
+        }
+
+        function img_sgt3Move() {
+            var img_sgt3 = document.getElementById("img_sgt3");
+            img_sgt3.src = "drawable/img_sgt3_select.png"
+        }
+
+        function img_sgt3Out() {
+            var img_sgt3 = document.getElementById("img_sgt3");
+            img_sgt3.src = "drawable/img_sgt3.png"
+        }
+
+        function img_sgt4Move() {
+            var img_sgt4 = document.getElementById("img_sgt4");
+            img_sgt4.src = "drawable/img_sgt4_select.png"
+        }
+
+        function img_sgt4Out() {
+            var img_sgt4 = document.getElementById("img_sgt4");
+            img_sgt4.src = "drawable/img_sgt4.png"
+        }
+
+        function img_sgt5Move() {
+            var img_sgt5 = document.getElementById("img_sgt5");
+            img_sgt5.src = "drawable/img_sgt5_select.png"
+        }
+
+        function img_sgt5Out() {
+            var img_sgt5 = document.getElementById("img_sgt5");
+            img_sgt5.src = "drawable/img_sgt5.png"
+        }
+
+        function img_new1Move() {
+            var img_new = document.getElementById("img_new1");
+            img_new.src = "drawable/img_new1_select.png"
+        }
+
+        function img_new1Out() {
+            var img_new = document.getElementById("img_new1");
+            img_new.src = "drawable/img_new1.png"
+        }
+
+        function img_new2Move() {
+            var img_new = document.getElementById("img_new2");
+            img_new.src = "drawable/img_new2_select.png"
+        }
+
+        function img_new2Out() {
+            var img_new = document.getElementById("img_new2");
+            img_new.src = "drawable/img_new2.png"
+        }
+
+        function img_new3Move() {
+            var img_new = document.getElementById("img_new3");
+            img_new.src = "drawable/img_new3_select.png"
+        }
+
+        function img_new3Out() {
+            var img_new = document.getElementById("img_new3");
+            img_new.src = "drawable/img_new3.png"
+        }
+
+        function img_new4Move() {
+            var img_new = document.getElementById("img_new4");
+            img_new.src = "drawable/img_new4_select.png"
+        }
+
+        function img_new4Out() {
+            var img_new = document.getElementById("img_new4");
+            img_new.src = "drawable/img_new4.png"
+        }
+
+
+        function img_new5Move() {
+            var img_new = document.getElementById("img_new5");
+            img_new.src = "drawable/img_new5_select.png"
+        }
+
+        function img_new5Out() {
+            var img_new = document.getElementById("img_new5");
+            img_new.src = "drawable/img_new5.png"
+        }
+
+        function img_new6Move() {
+            var img_new = document.getElementById("img_new6");
+            img_new.src = "drawable/img_new6_select.png"
+        }
+
+        function img_new6Out() {
+            var img_new = document.getElementById("img_new6");
+            img_new.src = "drawable/img_new6.png"
+        }
+
+        function img_new7Move() {
+            var img_new = document.getElementById("img_new7");
+            img_new.src = "drawable/img_new7_select.png"
+        }
+
+        function img_new7Out() {
+            var img_new = document.getElementById("img_new7");
+            img_new.src = "drawable/img_new7.png"
+        }
+
+        function img_new8Move() {
+            var img_new = document.getElementById("img_new8");
+            img_new.src = "drawable/img_new8_select.png"
+        }
+
+        function img_new8Out() {
+            var img_new = document.getElementById("img_new8");
+            img_new.src = "drawable/img_new8.png"
+        }
+
+        function img_new9Move() {
+            var img_new = document.getElementById("img_new9");
+            img_new.src = "drawable/img_new9_select.png"
+        }
+
+        function img_new9Out() {
+            var img_new = document.getElementById("img_new9");
+            img_new.src = "drawable/img_new9.png"
+        }
+
+        function img_new10Move() {
+            var img_new = document.getElementById("img_new10");
+            img_new.src = "drawable/img_new10_select.png"
+        }
+
+        function img_new10Out() {
+            var img_new = document.getElementById("img_new10");
+            img_new.src = "drawable/img_new10.png"
+        }
+
+
+        function sgtClick1() {
+            window.location.href = "http://class.imooc.com/sc/2?mc_marking=82c3cedd638e1d3fb98cd63709db4448&mc_channel=syb21";
+        }
+
+        function sgtClick2() {
+            window.location.href = "http://www.imooc.com/learn/862?mc_marking=897df86a0080aa93abc958e588b5f544&mc_channel=syb22";
+        }
+
+        function sgtClick3() {
+            window.location.href = "http://coding.imooc.com/class/109.html?mc_marking=a9aac085bc5bc146078d6095101af2a0&mc_channel=syb15";
+        }
+
+        function sgtClick4() {
+            window.location.href = "http://class.imooc.com/sc/18?mc_marking=7926d4e364260fadf99bc6683bf7488a&mc_channel=syb23";
+        }
+
+        function sgtClick5() {
+            window.location.href = "http://class.imooc.com/sc/29?mc_marking=e0b7020c55162407944b7ca0fa1373f8&mc_channel=syb13";
+        }
+
+
+        function newClick1() {
+            window.location.href = "http://coding.imooc.com/class/107.html";
+        }
+
+        function newClick2() {
+            window.location.href = "http://coding.imooc.com/class/94.html";
+        }
+
+
+        function newClick3() {
+            window.location.href = "http://coding.imooc.com/class/122.html";
+        }
+
+        function newClick4() {
+            window.location.href = "http://www.imooc.com/learn/592";
+        }
+
+        function newClick5() {
+            window.location.href = "http://coding.imooc.com/class/74.html";
+        }
+
+        function newClick6() {
+            window.location.href = "http://coding.imooc.com/class/119.html";
+        }
+
+        function newClick7() {
+            window.location.href = "http://coding.imooc.com/class/82.html";
+        }
+
+        function newClick8() {
+            window.location.href = "http://www.imooc.com/learn/824";
+        }
+
+        function newClick9() {
+            window.location.href = "http://www.imooc.com/learn/787";
+        }
+
+        function newClick10() {
+            window.location.href = "http://coding.imooc.com/class/116.html";
+        }
+
+
+    </script>
+    <style>
+        /*全屏无边距*/
+        html, body {
+            margin: 0px;
+            height: 100%;
+            width: auto;
+            font-family: "Microsoft YaHei";
+            /*子布局在父布局里面的对其方式*/
+            text-align: center;
+        }
+
+        a:link {
+            text-decoration: none;
+            color: #000000
+        }
+
+        a:visited {
+            text-decoration: none;
+            color: #000000
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: #000000
+        }
+
+        a:active {
+            text-decoration: none;
+            color: #000000
+        }
+
+        /*设置宽度为100%，但是最小宽度为1300，防止小窗口下div长度仅仅为窗口的长度，导致显示背景不完整或者布局混乱*/
+        #container {
+            width: 100%;
+            min-width: 1280px;
+            background: white;
+        }
+
+        #toorbar {
+            background: white;
+            width: 100%;
+            height: 74px;
+            /*实现阴影*/
+            box-shadow: 0px 5px 10px gainsboro;
+        }
+
+        #logo {
+            float: left;
+            margin-left: 25px;
+            /*垂直居中*/
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #ul_menu {
+            float: left;
+            list-style: none;
+            margin: 0px;
+            /*垂直居中*/
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #div_search {
+            float: left;
+            margin-left: 40px;
+            /*垂直居中*/
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #div_search_img {
+            float: left;
+            margin-left: -15px;
+            /*垂直居中*/
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        #input_search {
+            /*无边框*/
+            color: grey;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 1.2px;
+            border-left-width: 0px;
+            border-top-style: none;
+            border-right-style: none;
+            border-bottom-style: solid;
+            border-left-style: none;
+            border-bottom-color: gainsboro;
+            outline: medium;
+            height: 30px;
+        }
+
+        /*鼠标移动变小手*/
+        #btn_search {
+            cursor: pointer;
+        }
+
+        #ul_menu_right {
+            float: right;
+            list-style: none;
+            margin: 0px;
+            /*垂直居中*/
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .li_horizontal li {
+            /*列表横排*/
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .li_horizontal_margin li {
+            /*列表横排*/
+            margin-left: 10px;
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .center_vertical {
+            /*垂直居中*/
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            vertical-align: middle;
+            color: #d0d0d0;
+        }
+
+        #img_msg {
+            margin-bottom: 10px;
+        }
+
+        #img_head {
+            margin-bottom: 1.5px;
+        }
+
+        .circular_head {
+            border-radius: 50%;
+        }
+
+        #div_category {
+            margin: 0 auto;
+            border-radius: 8px;
+            margin-top: 30px;
+            background: white;
+            width: 1155px;
+            height: 445px;
+            elevation: higher;
+            /*实现阴影*/
+            box-shadow: 0px 10px 30px #E0E0E0;
+
+        }
+
+        #div_tab {
+            border-bottom-left-radius: 8px;
+            border-top-left-radius: 8px;
+            float: left;
+            background: #263238;
+            height: 100%;
+            width: 18.9%;
+        }
+
+        #div_tab_right {
+            background: beige;
+            border-bottom-right-radius: 8px;
+            border-top-right-radius: 8px;
+            height: 100%;
+            width: 81.1%;
+            float: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #div_banner {
+            border-top-right-radius: 8px;
+            margin-left: -1px;
+            position: relative;
+            background: pink;
+            overflow: hidden;
+            width: 100%;
+            height: 71%;
+        }
+
+        #div_tab_direction {
+            background: white;
+            border-bottom-right-radius: 8px;
+            width: 100%;
+            height: 29%;
+        }
+
+        #ul_tab {
+            padding: 0px;
+            padding-left: 15px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            list-style: none;
+            margin: 0px;
+            /*垂直居中*/
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .ulTab li {
+            cursor: pointer;
+            border-bottom-left-radius: 4px;
+            border-top-left-radius: 4px;
+            padding-left: 15px;
+            height: 59.28px;
+            color: whitesmoke;
+            font-weight: 200
+        }
+
+        .ulTabNoradius li {
+            cursor: pointer;
+            padding-left: 15px;
+            height: 59.28px;
+            color: whitesmoke;
+            font-weight: 200
+        }
+
+        .gravityRight {
+            float: right;
+            height: 100%;
+            background: burlywood;
+        }
+
+        .li_arrow_right {
+            margin-left: 80px;
+        }
+
+        #div_tab_name {
+            float: left;
+            width: 77.4%;
+            height: 100%;
+        }
+
+        #div_tab_arrow {
+            float: left;
+            width: 22.6%;
+            height: 100%;
+        }
+
+        .ulStyleHorizontal {
+            list-style: none;
+            margin: 0px;
+            padding: 0px;
+            /*垂直居中*/
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .tab_arrow_right {
+            width: 12px;
+            cursor: hand;
+        }
+
+        .tab_direction {
+            margin-left: 40px;
+            cursor: pointer;
+        }
+
+        #mydiv {
+            width: 50px;
+            height: 50px;
+            background-color: green;
+            position: absolute;
+        }
+
+        .clear {
+            *zoom: 1;
+        }
+
+        .clear:after {
+            visibility: hidden;
+            content: "";
+            display: block;
+            clear: both;
+            height: 0;
+        }
+
+
+        #div_tab_hide {
+            visibility: hidden;
+            width: 78.35%;
+            height: 100%;
+            background: white;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #inner img {
+            width: 10%;
+            height: 100%;
+            float: left;
+        }
+
+
+        .paganation span {
+            background: #F2F2F2;
+            color: grey;
+            border-radius: 50%;
+            cursor: pointer
+        }
+
+
+        .arrow {
+            position: absolute;
+            top: 0;
+            width: 30px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            color: gainsboro;
+            cursor: pointer;
+            top: 40%;
+        }
+
+        #right {
+            right: 0;
+        }
+
+
+        #ul_foot li {
+            /*列表横排*/
+            display: inline;
+        }
+
+        #ul_foot {
+            margin: 0 auto;
+            padding: 0px;
+            padding-top: 10px;
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <link rel="icon" href="drawable/icon.png">
+    <link rel="stylesheet" type="text/css" href="banner.css"/>
+    <title>慕课网</title>
+</head>
+
+<body>
+
+<div id="container">
+    <div id="toorbar">
+        <div id="logo">
+            <a href="first.html"><img src="drawable/muke.png" width="125" height="60" align="center"></a>
+        </div>
+        <ul id="ul_menu" class="li_horizontal_margin">
+            <li><a href="http://www.imooc.com/course/list" style="color: black;font-family: 'Microsoft YaHei'">课程</a>
+            </li>
+            <li><a href="http://class.imooc.com/" style="color: black;font-family: 'Microsoft YaHei'">职业路径</a></li>
+            <li><a href="http://coding.imooc.com/" style="color: black;font-family: 'Microsoft YaHei'">实战</a></li>
+            <li><a href="http://www.imooc.com/wenda" style="color: black;font-family: 'Microsoft YaHei'">猿问</a></li>
+            <li><a href="http://www.imooc.com/article" style="color: black;font-family: 'Microsoft YaHei'">手记</a></li>
+        </ul>
+        <div id="div_search">
+            <!--监听回车键-->
+            <input id="input_search" type="text" name="firstname" value="输入关键字查找"
+                   onkeypress="if(event.keyCode == 13){search()}" onfocus="inputHintFocus()" onblur="inputHintOnblur()">
+        </div>
+        <div id="div_search_img" align="center">
+            <img id="btn_search" src="drawable/ic_search.svg" width="15px" onclick="search()"
+                 onmousemove="btn_searchMouseMove()" onmouseout="btn_searchMouseOut()">
+        </div>
+        <ul id="ul_menu_right" class="li_horizontal">
+            <li><a href="http://order.imooc.com/pay/cart"><img id="img_shopcart" src="drawable/btn_shopcart.png"
+                                                               height="38px" onmousemove="shopcartMouseMove()"
+                                                               onmouseout="shopcartMouseOut()"></a></li>
+            <li><a href="http://www.imooc.com/u/2125589/notices"><img id="img_msg" src="drawable/btn_msg.svg"
+                                                                      height="18px" onmousemove="msgMouseMove()"
+                                                                      onmouseout="msgMouseOut()"></a></li>
+            <li><a href="http://www.imooc.com/u/2125589"><img id="img_head" class="circular_head" src="drawable/ic_head.jpg"
+                                                              height="35px" onmousemove="headMouseMove()"
+                                                              onmouseout="headMouseOut()"></a></li>
+        </ul>
+    </div>
+
+    <div id="div_category">
+
+        <!--tab选项卡-->
+        <div id="div_tab">
+            <div id="div_tab_name">
+                <ul id="ul_tab" class="ulTab">
+                    <li onclick="window.location.href ='http://www.imooc.com/course/list?c=fe'">
+                        <div class="center_vertical">前端开发</div>
+                    </li>
+                    <li onclick="window.location.href ='http://www.imooc.com/course/list?c=be'">
+                        <div class="center_vertical">后端开发</div>
+                    </li>
+                    <li onclick="window.location.href ='http://www.imooc.com/course/list?c=mobile'">
+                        <div class="center_vertical">移动开发</div>
+                    </li>
+                    <li onclick="window.location.href ='http://www.imooc.com/course/list?c=data'">
+                        <div class="center_vertical">数据库</div>
+                    </li>
+                    <li onclick="window.location.href ='http://www.imooc.com/course/list?c=cb'">
+                        <div class="center_vertical">云计算&大数据</div>
+                    </li>
+                    <li onclick="window.location.href ='http://www.imooc.com/course/list?c=op'">
+                        <div class="center_vertical">运维&测试</div>
+                    </li>
+                    <li onclick="window.location.href ='http://www.imooc.com/course/list?c=photo'">
+                        <div class="center_vertical">UI设计</div>
+                    </li>
+                </ul>
+            </div>
+            <div id="div_tab_arrow">
+                <ul id="ul_tab_name" class="ulTabNoradius ulStyleHorizontal">
+                    <li>
+                        <div class="center_vertical"><img src="drawable/ic_arrow_right.svg" class="tab_arrow_right">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="center_vertical"><img src="drawable/ic_arrow_right.svg" class="tab_arrow_right">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="center_vertical"><img src="drawable/ic_arrow_right.svg" class="tab_arrow_right">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="center_vertical"><img src="drawable/ic_arrow_right.svg" class="tab_arrow_right">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="center_vertical"><img src="drawable/ic_arrow_right.svg" class="tab_arrow_right">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="center_vertical"><img src="drawable/ic_arrow_right.svg" class="tab_arrow_right">
+                        </div>
+                    </li>
+                    <li>
+                        <div class="center_vertical"><img src="drawable/ic_arrow_right.svg" class="tab_arrow_right">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="div_tab_right">
+            <!--轮播-->
+            <div id="div_banner">
+                <div id="div_banner_images">
+                    <img src="drawable/bg_banner1.jpg"/>
+                    <img src="drawable/bg_banner2.jpg"/>
+                    <img src="drawable/bg_banner3.jpg"/>
+                    <img src="drawable/bg_banner4.jpg"/>
+                    <img src="drawable/bg_banner5.jpg"/>
+                    <img src="drawable/bg_banner1.jpg"/>
+                </div>
+                <div id="div_action">
+                    <div id="div_action_left">
+                        <img src="drawable/ic_arrow_left.svg" class="arrow" id="img_arrow_left">
+                    </div>
+
+                    <div id="div_action_right">
+                        <img src="drawable/ic_arrow_right.svg" class="arrow" id="img_arrow_right">
+                    </div>
+
+                </div>
+                <ul>
+                    <li>
+                        <div class="circular" style="background: #ffffff;border: 1px solid #b9b9b9"></div>
+                    </li>
+                    <li>
+                        <div class="circular"></div>
+                    </li>
+                    <li>
+                        <div class="circular"></div>
+                    </li>
+                    <li>
+                        <div class="circular"></div>
+                    </li>
+                    <li>
+                        <div class="circular"></div>
+                    </li>
+                </ul>
+            </div>
+            <!--学习方向-->
+            <div id="div_tab_direction">
+                <div id="div_web_img" style="float: left;margin-left: -5px;position: relative"><img id="img_web"
+                                                                                                    src="drawable/img_web.png"
+                                                                                                    width="140.5px"
+                                                                                                    onclick="window.location.href='http://class.imooc.com/?c=fe'"
+                                                                                                    class="tab_direction"
+                                                                                                    onmousemove="webImgMove()">
+                </div>
+                <div id="div_php_img" style="float: left;position: relative"><img src="drawable/img_php.png"
+                                                                                  width="140.5px"
+                                                                                  onclick="window.location.href='http://class.imooc.com/?c=php'"
+                                                                                  class="tab_direction"></div>
+                <div id="div_java_img" style="float: left;position: relative"><img src="drawable/img_java.png"
+                                                                                   width="140.5px"
+                                                                                   onclick="window.location.href='http://class.imooc.com/?c=java'"
+                                                                                   class="tab_direction"></div>
+                <div id="div_android_img" style="float: left;position: relative"><img src="drawable/img_android.png"
+                                                                                      width="140.5px"
+                                                                                      onclick="window.location.href='http://class.imooc.com/?c=android'"
+                                                                                      class="tab_direction"></div>
+                <div id="div_ios_img" style="float: left;position: relative"><img src="drawable/img_ios.png"
+                                                                                  width="140.5px"
+                                                                                  onclick="window.location.href='http://class.imooc.com/?c=ios'"
+                                                                                  class="tab_direction"></div>
+            </div>
+
+            <!--选项卡内容区域-->
+            <div id="div_tab_hide">
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div id="div_sgs_title" style="width: 100%;height: 52px;text-align: center;margin-top: 30px;margin-bottom: 10px" ;>
+        <img src="drawable/img_title_suggest.png" width="335" height="52">
+    </div>
+
+    <div id="div_sgs_detail"
+         style="text-align: center;padding-bottom: 50px; box-shadow: 0px 5px 10px #eeeeee; margin: 0 auto">
+
+        <div style="width: 1255px;margin: 0 auto">
+            <img id="img_sgt1" src="drawable/img_sgt1.png" width="220" height="235" style="margin: 5px;cursor: pointer;"
+                 onmousemove="img_sgt1Move()" onmouseout="img_sgt1Out()" onclick="sgtClick1()">
+            <img id="img_sgt2" src="drawable/img_sgt2.png" width="220" height="235" style="margin: 5px;cursor: pointer;"
+                 onmousemove="img_sgt2Move()" onmouseout="img_sgt2Out()" onclick="sgtClick2()">
+            <img id="img_sgt3" src="drawable/img_sgt3.png" width="220" height="235" style="margin: 5px;cursor: pointer;"
+                 onmousemove="img_sgt3Move()" onmouseout="img_sgt3Out()" onclick="sgtClick3()">
+            <img id="img_sgt4" src="drawable/img_sgt4.png" width="220" height="235" style="margin: 5px;cursor: pointer;"
+                 onmousemove="img_sgt4Move()" onmouseout="img_sgt4Out()" onclick="sgtClick4()">
+            <img id="img_sgt5" src="drawable/img_sgt5.png" width="220" height="235" style="margin: 5px;cursor: pointer;"
+                 onmousemove="img_sgt5Move()" onmouseout="img_sgt5Out()" onclick="sgtClick5()">
+        </div>
+    </div>
+
+
+    <div id="div_sgs_title2"
+         style="width: 100%;height: 52px;text-align: center;padding-top: 50px;padding-bottom: 10px;margin-top: 8px;background: #f8fafc"
+         ;>
+        <img src="drawable/img_title2.png" width="339" height="53">
+    </div>
+
+
+    <div id="div_sgs2_detail"
+         style="text-align: center;margin-bottom: 20px;padding-bottom: 50px; box-shadow: 0px 10px 10px #efefef;background: #f8fafc">
+
+        <div style="margin: 0 auto;width: 1255px">
+            <img id="img_new1" src="drawable/img_new1.png" width="227" height="240" style="margin: 5px;cursor: pointer;"
+                 onmousemove="img_new1Move()" onmouseout="img_new1Out()" onclick="newClick1()">
+            <img id="img_new2" src="drawable/img_new2.png" width="227" height="240" style="margin: 5px;cursor: pointer;"
+                 onmousemove="img_new2Move()" onmouseout="img_new2Out()" onclick="newClick2()">
+            <img id="img_new3" src="drawable/img_new3.png" width="227" height="240" style="margin: 5px;cursor: pointer;"
+                 onmousemove="img_new3Move()" onmouseout="img_new3Out()" onclick="newClick3()">
+            <img id="img_new4" src="drawable/img_new4.png" width="227" height="240" style="margin: 5px;cursor: pointer;"
+                 onmousemove="img_new4Move()" onmouseout="img_new4Out()" onclick="newClick4()">
+            <img id="img_new5" src="drawable/img_new5.png" width="227" height="240" style="margin: 5px;cursor: pointer;"
+                 onmousemove="img_new5Move()" onmouseout="img_new5Out()" onclick="newClick5()">
+            <img id="img_new6" src="drawable/img_new6.png" width="227" height="240" style="margin: 5px;cursor: pointer;"
+                 onmousemove="img_new6Move()" onmouseout="img_new6Out()" onclick="newClick6()">
+            <img id="img_new7" src="drawable/img_new7.png" width="227" height="240" style="margin: 5px;cursor: pointer;"
+                 onmousemove="img_new7Move()" onmouseout="img_new7Out()" onclick="newClick7()">
+            <img id="img_new8" src="drawable/img_new8.png" width="227" height="240" style="margin: 5px;cursor: pointer;"
+                 onmousemove="img_new8Move()" onmouseout="img_new8Out()" onclick="newClick8()">
+            <img id="img_new9" src="drawable/img_new9.png" width="227" height="240" style="margin: 5px;cursor: pointer;"
+                 onmousemove="img_new9Move()" onmouseout="img_new9Out()" onclick="newClick9()">
+            <img id="img_new10" src="drawable/img_new10.png" width="227" height="240"
+                 style="margin: 5px;cursor: pointer;"
+                 onmousemove="img_new10Move()" onmouseout="img_new10Out()" onclick="sgtClick10()">
+        </div>
+    </div>
+
+    <div style=" width: 100%; background-repeat: round; margin-bottom:10px;height: 457px;box-shadow: 0px 10px 10px #f5f5f5;text-align: center">
+        <img src="drawable/bg_star.png" style="height: 457px;text-align: center">
+    </div>
+
+    <div style="height: 100px;width: auto;background: #f8fafc;padding-top: 20px;">
+
+        <ul id="ul_foot">
+            <li><a href="http://www.imooc.com/about/cooperate" style="color: grey;font-size: 14px">企业合作</a></li>
+            <li><a href="http://www.imooc.com/about/job" style="color: grey;font-size: 14px">人才招聘</a></li>
+            <li><a href="http://www.imooc.com/about/contact" style="color: grey;font-size: 14px">联系我们</a></li>
+            <li><a href="http://www.imooc.com/about/recruit" style="color: grey;font-size: 14px">讲师招募</a></li>
+            <li><a href="http://www.imooc.com/about/faq" style="color: grey;font-size: 14px">常见问题</a></li>
+            <li><a href="http://www.imooc.com/user/feedback" style="color: grey;font-size: 14px">意见反馈</a></li>
+            <li><a href="http://daxue.imooc.com/" style="color: grey;font-size: 14px">慕课大学</a></li>
+            <li><a href="http://www.imooc.com/about/friendly" style="color: grey;font-size: 14px">友情链接</a></li>
+        </ul>
+
+        <div style=" width: 100%;padding-top: 5px;"><p style="color: darkgrey;font-size: 12px;">© 2017 imooc.com 京ICP备
+            13046642号-2</p></div>
+
+    </div>
+
+
+</div>
+
+</div>
+
+<script type="text/javascript">
+    window.onload = function () {
+        var div_web_img = document.getElementById("div_web_img");
+        var div_php_img = document.getElementById("div_php_img");
+        var div_java_img = document.getElementById("div_java_img");
+        var div_android_img = document.getElementById("div_android_img");
+        var div_ios_img = document.getElementById("div_ios_img");
+
+        var x = 0, x1 = 0, x2 = 0, x3 = 0, x4 = 0;
+        var flag, flag1, flag2, flag3, flag4;
+
+
+        function move_up() {
+            if (x > 6)
+                return;
+            x = x + 1;
+            div_web_img.style.bottom = x + "px";
+        }
+
+        function move_up1() {
+            if (x1 > 6)
+                return;
+            x1 = x1 + 1;
+            div_php_img.style.bottom = x1 + "px";
+        }
+
+        function move_up2() {
+            if (x2 > 6)
+                return;
+            x2 = x2 + 1;
+            div_java_img.style.bottom = x2 + "px";
+        }
+
+        function move_up3() {
+            if (x3 > 6)
+                return;
+            x3 = x3 + 1;
+            div_android_img.style.bottom = x3 + "px";
+        }
+
+        function move_up4() {
+            if (x4 > 6)
+                return;
+            x4 = x4 + 1;
+            div_ios_img.style.bottom = x4 + "px";
+        }
+
+
+        function move_down() {
+            if (x == 0)
+                return;
+            x = x - 1;
+            div_web_img.style.bottom = x + "px";
+        }
+
+        function move_down1() {
+            if (x1 == 0)
+                return;
+            x1 = x1 - 1;
+            div_php_img.style.bottom = x1 + "px";
+        }
+
+        function move_down2() {
+            if (x2 == 0)
+                return;
+            x2 = x2 - 1;
+            div_java_img.style.bottom = x2 + "px";
+        }
+
+        function move_down3() {
+            if (x3 == 0)
+                return;
+            x3 = x3 - 1;
+            div_android_img.style.bottom = x3 + "px";
+        }
+
+        function move_down4() {
+            if (x4 == 0)
+                return;
+            x4 = x4 - 1;
+            div_ios_img.style.bottom = x4 + "px";
+        }
+
+        div_web_img.onmousemove = function () {
+            if (x == 0) {
+                clearInterval(flag);
+                flag = setInterval(move_up, 20);
+            }
+        }
+        div_web_img.onmouseout = function () {
+            clearInterval(flag);
+            flag = setInterval(move_down, 20);
+        }
+
+        div_php_img.onmousemove = function () {
+            if (x1 == 0) {
+                clearInterval(flag1);
+                flag1 = setInterval(move_up1, 20);
+            }
+        }
+        div_php_img.onmouseout = function () {
+            clearInterval(flag1);
+            flag1 = setInterval(move_down1, 20);
+        }
+
+        div_java_img.onmousemove = function () {
+            if (x2 == 0) {
+                clearInterval(flag2);
+                flag2 = setInterval(move_up2, 20);
+            }
+        }
+        div_java_img.onmouseout = function () {
+            clearInterval(flag2);
+            flag2 = setInterval(move_down2, 20);
+        }
+
+        div_android_img.onmousemove = function () {
+            if (x3 == 0) {
+                clearInterval(flag3);
+                flag3 = setInterval(move_up3, 20);
+            }
+        }
+        div_android_img.onmouseout = function () {
+            clearInterval(flag3);
+            flag3 = setInterval(move_down3, 20);
+        }
+
+        div_ios_img.onmousemove = function () {
+            if (x4 == 0) {
+                clearInterval(flag4);
+                flag4 = setInterval(move_up4, 20);
+            }
+        }
+        div_ios_img.onmouseout = function () {
+            clearInterval(flag4);
+            flag4 = setInterval(move_down4, 20);
+        }
+
+
+    }
+
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        var currentItem = 0;//当前item
+        var allCount = 5;//展示的item总数（实际数目减一）
+        var isTouch = false;//鼠标是否选中
+        var intervalTime = '4s';//动画间隔
+        var itemLength = 936;//每个item长度
+        var switchTime = 500;//切换动画时间
+        var itemHeight = 316;//每个item高度
+
+        //根据item大小来设置布局大小，避免更改多处数据
+        $("#div_banner_images").css({"width": itemLength * (allCount + 1) + "px", "height": itemHeight + "px"});
+        $("#div_banner").css({"width": itemLength + "px", "height": itemHeight + "px"});
+        $("#div_banner_images img").css({"width": itemLength + "px", "height": itemHeight + "px"});
+
+        //鼠标移到banner时候停止轮播
+        $("#div_banner").mouseenter(function () {
+            isTouch = true;
+        }).mouseleave(function () {
+            isTouch = false;
+        });
+
+        //点击指示器切换banner
+        $("#div_banner ul li").click(function () {
+            currentItem = $(this).index();
+            $("#div_banner_images").stop().animate({'left': currentItem * -itemLength + 'px'}, switchTime);//控制偏移量
+            switchPoint();
+        });
+
+        //每次更新指示器
+        function switchPoint() {
+            $("#div_banner ul li").each(function (index) {
+                if (index == currentItem) {
+                    $("#div_banner ul li").eq(index).children().css({"background": "#ffffff", "border": "1px solid #b9b9b9"});
+                } else {
+                    $("#div_banner ul li").eq(index).children().css({"background": "#263238", "border": "1px solid #c9c9c9"});
+                }
+            });
+        }
+
+
+        //自动轮播
+        $(document).ready(function () {
+            $(this).everyTime(intervalTime, function () {
+                if (!isTouch) {
+                    toNext();
+                }
+            });
+        });
+
+        function toNext() {
+            currentItem++;
+            $("#div_banner_images").stop().animate({'left': currentItem * -itemLength + 'px'}, switchTime);//控制偏移量
+            if (currentItem == allCount) {//为最后一个的时候就马上切换到第一个去
+                currentItem = 0;
+                $(this).oneTime(switchTime + 100 + "ms", function () {//这里设置一个延迟，当动画完成以后再回到第一个
+                    $("#div_banner_images").stop().animate({'left': currentItem * -itemLength + 'px'}, 1);//回到第一个
+                });
+            }
+            switchPoint();
+        }
+
+
+        function toLast() {
+            currentItem--;
+            if(currentItem<0){
+                currentItem=allCount-1;
+            }
+            $("#div_banner_images").stop().animate({'left': currentItem * -itemLength + 'px'}, switchTime);//控制偏移量
+            switchPoint();
+        }
+
+
+        //点击箭头切换页面
+
+        $("#div_action_left").mouseenter(function () {
+            $(this).css("background", "rgba(0, 0, 0, 0.5)");
+            $("#img_arrow_left").css("visibility","visible");
+        });
+
+        $("#div_action_left").mouseleave(function () {
+            $(this).css("background", "rgba(0, 0, 0, 0)");
+            $("#img_arrow_left").css("visibility","hidden");
+        });
+
+        $("#div_action_left").click(function () {
+            toLast();
+        });
+
+        $("#div_action_right").mouseenter(function () {
+            $(this).css("background", "rgba(0, 0, 0, 0.5)");
+            $("#img_arrow_right").css("visibility","visible");
+        });
+
+        $("#div_action_right").mouseleave(function () {
+            $(this).css("background", "rgba(0, 0, 0, 0)");
+            $("#img_arrow_right").css("visibility","hidden");
+        });
+
+        $("#div_action_right").click(function () {
+            toNext();
+        });
+
+
+    })
+</script>
+
+<script>tabMouseMove()</script>
+</body>
+</html>
+<script>
+    /**
+     * jQuery.timers - Timer abstractions for jQuery
+     * Written by Blair Mitchelmore (blair DOT mitchelmore AT gmail DOT com)
+     * Licensed under the WTFPL (http://sam.zoy.org/wtfpl/).
+     * Date: 2009/02/08
+     *
+     * @author Blair Mitchelmore
+     * @version 1.1.2
+     *
+     **/
+
+    jQuery.fn.extend({
+        everyTime: function (interval, label, fn, times, belay) {
+            return this.each(function () {
+                jQuery.timer.add(this, interval, label, fn, times, belay);
+            });
+        },
+        oneTime: function (interval, label, fn) {
+            return this.each(function () {
+                jQuery.timer.add(this, interval, label, fn, 1);
+            });
+        },
+        stopTime: function (label, fn) {
+            return this.each(function () {
+                jQuery.timer.remove(this, label, fn);
+            });
+        }
+    });
+
+    jQuery.event.special
+
+    jQuery.extend({
+        timer: {
+            global: [],
+            guid: 1,
+            dataKey: "jQuery.timer",
+            regex: /^([0-9]+(?:\.[0-9]*)?)\s*(.*s)?$/,
+            powers: {
+                // Yeah this is major overkill...
+                'ms': 1,
+                'cs': 10,
+                'ds': 100,
+                's': 1000,
+                'das': 10000,
+                'hs': 100000,
+                'ks': 1000000
+            },
+            timeParse: function (value) {
+                if (value == undefined || value == null)
+                    return null;
+                var result = this.regex.exec(jQuery.trim(value.toString()));
+                if (result[2]) {
+                    var num = parseFloat(result[1]);
+                    var mult = this.powers[result[2]] || 1;
+                    return num * mult;
+                } else {
+                    return value;
+                }
+            },
+            add: function (element, interval, label, fn, times, belay) {
+                var counter = 0;
+
+                if (jQuery.isFunction(label)) {
+                    if (!times)
+                        times = fn;
+                    fn = label;
+                    label = interval;
+                }
+
+                interval = jQuery.timer.timeParse(interval);
+
+                if (typeof interval != 'number' || isNaN(interval) || interval <= 0)
+                    return;
+
+                if (times && times.constructor != Number) {
+                    belay = !!times;
+                    times = 0;
+                }
+
+                times = times || 0;
+                belay = belay || false;
+
+                var timers = jQuery.data(element, this.dataKey) || jQuery.data(element, this.dataKey, {});
+
+                if (!timers[label])
+                    timers[label] = {};
+
+                fn.timerID = fn.timerID || this.guid++;
+
+                var handler = function () {
+                    if (belay && this.inProgress)
+                        return;
+                    this.inProgress = true;
+                    if ((++counter > times && times !== 0) || fn.call(element, counter) === false)
+                        jQuery.timer.remove(element, label, fn);
+                    this.inProgress = false;
+                };
+
+                handler.timerID = fn.timerID;
+
+                if (!timers[label][fn.timerID])
+                    timers[label][fn.timerID] = window.setInterval(handler, interval);
+
+                this.global.push(element);
+
+            },
+            remove: function (element, label, fn) {
+                var timers = jQuery.data(element, this.dataKey), ret;
+
+                if (timers) {
+
+                    if (!label) {
+                        for (label in timers)
+                            this.remove(element, label, fn);
+                    } else if (timers[label]) {
+                        if (fn) {
+                            if (fn.timerID) {
+                                window.clearInterval(timers[label][fn.timerID]);
+                                delete timers[label][fn.timerID];
+                            }
+                        } else {
+                            for (var fn in timers[label]) {
+                                window.clearInterval(timers[label][fn]);
+                                delete timers[label][fn];
+                            }
+                        }
+
+                        for (ret in timers[label]) break;
+                        if (!ret) {
+                            ret = null;
+                            delete timers[label];
+                        }
+                    }
+
+                    for (ret in timers) break;
+                    if (!ret)
+                        jQuery.removeData(element, this.dataKey);
+                }
+            }
+        }
+    });
+
+    jQuery(window).bind("unload", function () {
+        jQuery.each(jQuery.timer.global, function (index, item) {
+            jQuery.timer.remove(item);
+        });
+    });
+</script>
+
